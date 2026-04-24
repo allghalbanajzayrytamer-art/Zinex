@@ -5,116 +5,44 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ZINEX | Gallery Archive</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;600&family=Playfair+Display:wght@900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        
-        body {
-            background-color: #050505;
-            color: white;
-            font-family: 'Montserrat', sans-serif;
-            padding: 80px 5% 50px;
-            overflow-x: hidden;
-        }
+        body { background-color: #050505; color: white; font-family: 'Montserrat', sans-serif; padding: 80px 5% 50px; overflow-x: hidden; }
+        header { text-align: center; margin-bottom: 80px; }
+        header h1 { font-family: 'Playfair Display', serif; font-size: clamp(35px, 8vw, 60px); letter-spacing: 8px; text-transform: uppercase; }
+        header p { opacity: 0.5; letter-spacing: 4px; font-size: 10px; text-transform: uppercase; margin-top: 10px; }
 
-        header {
-            text-align: center;
-            margin-bottom: 80px;
-        }
-
-        header h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: clamp(35px, 8vw, 60px);
-            letter-spacing: 8px;
-            text-transform: uppercase;
-        }
-
-        header p {
-            opacity: 0.5;
-            letter-spacing: 4px;
-            font-size: 10px;
-            text-transform: uppercase;
-            margin-top: 10px;
-        }
-
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-            grid-auto-rows: 500px;
-            grid-gap: 30px;
-            grid-auto-flow: dense;
-        }
-
-        .gallery-item {
-            position: relative;
-            overflow: hidden;
-            border-radius: 2px;
-            opacity: 0;
-            transform: translateY(50px);
-            transition: all 0.8s cubic-bezier(0.2, 1, 0.3, 1);
-        }
-
-        .gallery-item.reveal {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
+        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); grid-auto-rows: 500px; grid-gap: 30px; grid-auto-flow: dense; }
+        .gallery-item { position: relative; overflow: hidden; border-radius: 2px; opacity: 0; transform: translateY(50px); transition: all 0.8s cubic-bezier(0.2, 1, 0.3, 1); }
+        .gallery-item.reveal { opacity: 1; transform: translateY(0); }
         .gallery-item.wide { grid-column: span 2; }
         .gallery-item.tall { grid-row: span 2; }
+        .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 1.2s cubic-bezier(0.2, 1, 0.3, 1); filter: brightness(0.7); }
+        .gallery-item:hover img { transform: scale(1.1); filter: brightness(1); }
 
-        .gallery-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 1.2s cubic-bezier(0.2, 1, 0.3, 1);
-            filter: brightness(0.7);
-        }
-
-        .gallery-item:hover img {
-            transform: scale(1.1);
-            filter: brightness(1);
-        }
-
-        .overlay {
-            position: absolute;
-            bottom: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(to top, rgba(0,0,0,0.9), transparent 60%);
-            display: flex;
-            align-items: flex-end;
-            padding: 40px;
-            opacity: 0;
-            transition: 0.5s;
-        }
-
+        .overlay { position: absolute; bottom: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(to top, rgba(0,0,0,0.9), transparent 60%); display: flex; align-items: flex-end; padding: 40px; opacity: 0; transition: 0.5s; }
         .gallery-item:hover .overlay { opacity: 1; }
+        .overlay span { font-size: 11px; letter-spacing: 3px; text-transform: uppercase; border-left: 1px solid #fff; padding-left: 15px; }
 
-        .overlay span {
-            font-size: 11px;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            border-left: 1px solid #fff;
-            padding-left: 15px;
+        .contact-section { margin-top: 120px; padding: 60px 0; text-align: center; border-top: 1px solid rgba(255,255,255,0.1); }
+        .contact-section h2 { font-family: 'Playfair Display', serif; font-size: 28px; letter-spacing: 5px; margin-bottom: 20px; text-transform: uppercase; }
+        
+        .contact-btn {
+            display: inline-flex; align-items: center; gap: 15px; background: rgba(255,255,255,0.05); color: white;
+            text-decoration: none; padding: 20px 40px; border: 1px solid rgba(24, 119, 242, 0.3); font-size: 13px;
+            letter-spacing: 3px; text-transform: uppercase; font-weight: bold; transition: 0.5s; backdrop-filter: blur(10px);
         }
+        .contact-btn:hover { background: white; color: black; border-color: white; transform: translateY(-5px); }
+        .contact-btn i { font-size: 20px; color: #1877F2; }
+        .contact-btn:hover i { color: #1877F2; }
 
-        .back-nav {
-            margin-top: 100px;
-            text-align: center;
-        }
-
-        .back-btn {
-            color: rgba(255,255,255,0.3);
-            text-decoration: none;
-            font-size: 10px;
-            letter-spacing: 4px;
-            text-transform: uppercase;
-            transition: 0.4s;
-        }
-
+        .back-nav { margin-top: 50px; text-align: center; }
+        .back-btn { color: rgba(255,255,255,0.3); text-decoration: none; font-size: 10px; letter-spacing: 4px; text-transform: uppercase; transition: 0.4s; }
         .back-btn:hover { color: white; letter-spacing: 6px; }
 
-        @media (max-width: 768px) {
-            .gallery-item.wide { grid-column: span 1; }
-            .gallery-grid { grid-auto-rows: 400px; }
-        }
+        @media (max-width: 768px) { .gallery-item.wide { grid-column: span 1; } .gallery-grid { grid-auto-rows: 400px; } }
     </style>
 </head>
 <body>
@@ -126,54 +54,31 @@
     </header>
 
     <div class="gallery-grid">
-        <div class="gallery-item wide">
-            <img src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&q=80&w=1500" alt="Cinematic Car">
-            <div class="overlay"><span>Automotive Cinema</span></div>
-        </div>
-
-        <div class="gallery-item tall">
-            <img src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&q=80&w=1500" alt="Portrait">
-            <div class="overlay"><span>Editorial Style</span></div>
-        </div>
-
-        <div class="gallery-item">
-            <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=1500" alt="Architecture">
-            <div class="overlay"><span>Urban Lines</span></div>
-        </div>
-
-        <div class="gallery-item">
-            <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&q=80&w=1500" alt="Tech/Web">
-            <div class="overlay"><span>Web Design Vision</span></div>
-        </div>
-
-        <div class="gallery-item wide">
-            <img src="https://images.unsplash.com/photo-1511447333015-45b65e60f6d5?auto=format&fit=crop&q=80&w=1500" alt="Night Lights">
-            <div class="overlay"><span>Cyberpunk Vibes</span></div>
-        </div>
-
-        <div class="gallery-item tall">
-            <img src="https://images.unsplash.com/photo-1502133480873-34d95b3d581b?auto=format&fit=crop&q=80&w=1500" alt="Art">
-            <div class="overlay"><span>Abstract Cinema</span></div>
-        </div>
+        <div class="gallery-item wide"><img src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&q=80&w=1500"><div class="overlay"><span>Automotive Cinema</span></div></div>
+        <div class="gallery-item tall"><img src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&q=80&w=1500"><div class="overlay"><span>Editorial Style</span></div></div>
+        <div class="gallery-item"><img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=1500"><div class="overlay"><span>Urban Lines</span></div></div>
+        <div class="gallery-item"><img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&q=80&w=1500"><div class="overlay"><span>Web Design Vision</span></div></div>
+        <div class="gallery-item wide"><img src="https://images.unsplash.com/photo-1511447333015-45b65e60f6d5?auto=format&fit=crop&q=80&w=1500"><div class="overlay"><span>Cyberpunk Vibes</span></div></div>
+        <div class="gallery-item tall"><img src="https://images.unsplash.com/photo-1502133480873-34d95b3d581b?auto=format&fit=crop&q=80&w=1500"><div class="overlay"><span>Abstract Cinema</span></div></div>
     </div>
+
+    <section class="contact-section">
+        <h2>Start a Project</h2>
+        <a href="https://www.facebook.com/share/1Gwv2aUiDZ/" class="contact-btn" target="_blank">
+            <i class="fab fa-facebook"></i>
+            Contact me on Facebook
+        </a>
+    </section>
 
     <div class="back-nav">
         <a href="index.html" class="back-btn">← Home</a>
     </div>
 
     <script>
-        // كود الحركة الاحترافية
         const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('reveal');
-                }
-            });
+            entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('reveal'); });
         }, { threshold: 0.1 });
-
-        document.querySelectorAll('.gallery-item').forEach(item => {
-            observer.observe(item);
-        });
+        document.querySelectorAll('.gallery-item').forEach(item => observer.observe(item));
     </script>
 </body>
 </html>
