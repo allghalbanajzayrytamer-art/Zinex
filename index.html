@@ -8,8 +8,9 @@
     <meta property="og:description" content="Cinematic Photography & Web Design Experience.">
     <meta property="og:image" content="https://images.unsplash.com/photo-1503376780353-7e6692767b70?q=80&w=1200">
     <meta property="og:url" content="https://allghalbanajzayrytamer-art.github.io/Zinex/">
-    
-    <link rel="icon" type="image/png" href="favicon.png">
+    <meta property="og:type" content="website">
+
+    <link rel="icon" type="image/png" href="logo.png">
 
     <title>ZINEX | Amine OV Portfolio</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;700&family=Playfair+Display:wght@900&display=swap" rel="stylesheet">
@@ -17,7 +18,16 @@
 
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Montserrat', sans-serif; background-color: #050505; color: white; scroll-behavior: smooth; }
+        body { font-family: 'Montserrat', sans-serif; background-color: #050505; color: white; scroll-behavior: smooth; overflow-x: hidden; }
+
+        /* Navigation */
+        nav { 
+            position: absolute; top: 0; width: 100%; padding: 25px 5%; 
+            display: flex; justify-content: space-between; align-items: center; z-index: 10; 
+        }
+        .logo-wrapper { display: flex; align-items: center; gap: 15px; }
+        .logo-img { height: 45px; width: auto; object-fit: contain; }
+        .logo-text { font-family: 'Playfair Display', serif; font-size: 22px; letter-spacing: 3px; }
 
         /* Hero Section */
         .hero {
@@ -27,72 +37,70 @@
             background-size: cover; background-position: center;
             display: flex; align-items: center; justify-content: center; text-align: center;
         }
-
-        .content h1 { font-family: 'Playfair Display', serif; font-size: clamp(50px, 15vw, 120px); letter-spacing: 15px; text-transform: uppercase; }
-        .content p { font-size: 12px; letter-spacing: 6px; opacity: 0.6; text-transform: uppercase; margin-bottom: 30px; }
+        .hero-content h1 { font-family: 'Playfair Display', serif; font-size: clamp(50px, 12vw, 100px); letter-spacing: 15px; text-transform: uppercase; margin-bottom: 20px; }
+        .hero-content p { font-size: 10px; letter-spacing: 5px; opacity: 0.6; text-transform: uppercase; margin-bottom: 40px; }
 
         /* Services Section */
-        .services { padding: 100px 10%; background: #0a0a0a; text-align: center; }
-        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; margin-top: 50px; }
-        
-        .service-card {
-            padding: 40px; border: 1px solid rgba(255,255,255,0.05); transition: 0.4s;
-            background: rgba(255,255,255,0.02);
-        }
-        .service-card:hover { border-color: white; transform: translateY(-10px); }
-        .service-card i { font-size: 30px; margin-bottom: 20px; color: rgba(255,255,255,0.8); }
-        .service-card h3 { font-family: 'Playfair Display', serif; letter-spacing: 2px; margin-bottom: 15px; }
-        .service-card p { font-size: 13px; opacity: 0.5; line-height: 1.6; }
+        .services { padding: 100px 10%; background: #080808; text-align: center; }
+        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; margin-top: 60px; }
+        .service-card { padding: 50px 30px; border: 1px solid rgba(255,255,255,0.05); background: rgba(255,255,255,0.02); transition: 0.5s; }
+        .service-card:hover { border-color: #d4af37; transform: translateY(-10px); }
+        .service-card i { font-size: 35px; margin-bottom: 25px; color: #d4af37; }
+        .service-card h3 { font-family: 'Playfair Display', serif; font-size: 20px; margin-bottom: 15px; letter-spacing: 2px; }
+        .service-card p { font-size: 13px; opacity: 0.5; line-height: 1.7; }
 
-        .btn-enter {
-            padding: 15px 40px; border: 1px solid white; color: white; text-decoration: none;
-            font-size: 12px; letter-spacing: 3px; text-transform: uppercase; transition: 0.4s;
+        .btn-action {
+            padding: 18px 45px; border: 1px solid white; color: white; text-decoration: none;
+            font-size: 11px; letter-spacing: 3px; text-transform: uppercase; transition: 0.4s;
+            display: inline-block;
         }
-        .btn-enter:hover { background: white; color: black; }
+        .btn-action:hover { background: white; color: black; }
 
-        nav { position: absolute; top: 0; width: 100%; padding: 30px 5%; display: flex; justify-content: space-between; align-items: center; z-index: 10; }
-        .logo-text { font-family: 'Playfair Display', serif; font-size: 24px; letter-spacing: 4px; }
+        @media (max-width: 768px) { .logo-text { display: none; } }
     </style>
 </head>
 <body>
 
     <nav>
-        <div class="logo-text">ZINEX</div>
-        <div style="font-size: 10px; letter-spacing: 3px; opacity: 0.5;">AMINE OV</div>
+        <div class="logo-wrapper">
+            <img src="logo.png" alt="ZINEX Logo" class="logo-img">
+            <div class="logo-text">ZINEX</div>
+        </div>
+        <div style="font-size: 9px; letter-spacing: 3px; opacity: 0.4;">BY AMINE OV</div>
     </nav>
 
-    <div class="hero">
-        <div class="content">
-            <p>Visual Arts & Code</p>
+    <section class="hero">
+        <div class="hero-content">
+            <p>Visionary Visuals & Digital Code</p>
             <h1>ZINEX</h1>
-            <a href="#services" class="btn-enter">Our Services</a>
+            <a href="#services" class="btn-action">Explore Expertise</a>
         </div>
-    </div>
+    </section>
 
     <section id="services" class="services">
-        <p style="letter-spacing: 5px; font-size: 10px; opacity: 0.4; margin-bottom: 10px;">EXPERTISE</p>
-        <h2 style="font-family: 'Playfair Display', serif; font-size: 40px; letter-spacing: 3px;">What I Do</h2>
+        <p style="letter-spacing: 5px; font-size: 9px; opacity: 0.4; margin-bottom: 15px;">WHAT I OFFER</p>
+        <h2 style="font-family: 'Playfair Display', serif; font-size: clamp(30px, 5vw, 45px); letter-spacing: 2px;">Professional Services</h2>
         
         <div class="services-grid">
             <div class="service-card">
                 <i class="fas fa-camera-retro"></i>
                 <h3>Photography</h3>
-                <p>Cinematic portraits and urban editorial shoots with high-end post-processing.</p>
+                <p>Cinematic editorial portraits and urban street photography with high-end grading.</p>
             </div>
             <div class="service-card">
                 <i class="fas fa-code"></i>
                 <h3>Web Design</h3>
-                <p>Building modern, fast, and responsive websites with a focus on visual aesthetics.</p>
+                <p>Crafting minimalist, fast, and responsive digital experiences tailored for creators.</p>
             </div>
             <div class="service-card">
                 <i class="fas fa-chart-line"></i>
-                <h3>Digital Solutions</h3>
-                <p>Technical analysis layouts and trading site architectures for modern traders.</p>
+                <h3>Digital Strategy</h3>
+                <p>Technical analysis layouts and trading-focused web architectures for modern brands.</p>
             </div>
         </div>
         
-        <div style="margin-top: 60px;">
-            <a href="gallery.html" class="btn-enter">Open Archive</a>
+        <div style="margin-top: 80px;">
+            <a href="gallery.html" class="btn-action">Open Gallery</a>
         </div>
     </section>
 
