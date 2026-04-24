@@ -8,158 +8,93 @@
     <meta property="og:description" content="Cinematic Photography & Web Design Experience.">
     <meta property="og:image" content="https://images.unsplash.com/photo-1503376780353-7e6692767b70?q=80&w=1200">
     <meta property="og:url" content="https://allghalbanajzayrytamer-art.github.io/Zinex/">
-    <meta property="og:type" content="website">
     
+    <link rel="icon" type="image/png" href="favicon.png">
+
     <title>ZINEX | Amine OV Portfolio</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;700&family=Playfair+Display:wght@900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        
-        body, html { 
-            height: 100%; 
-            font-family: 'Montserrat', sans-serif; 
-            overflow: hidden; 
-            background-color: #000;
-        }
+        body { font-family: 'Montserrat', sans-serif; background-color: #050505; color: white; scroll-behavior: smooth; }
 
-        /* الخلفية السينمائية المحدثة */
+        /* Hero Section */
         .hero {
             height: 100vh;
-            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.8)), 
-                        url('https://images.unsplash.com/photo-1536440136628-849c177e76a1?q=80&w=2025&auto=format&fit=crop');
-            background-size: cover;
-            background-position: center;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            color: white;
-            animation: zoomIn 5s infinite alternate ease-in-out; /* تأثير حركة بطيئة للخلفية */
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.9)), 
+                        url('https://images.unsplash.com/photo-1536440136628-849c177e76a1?q=80&w=1600&auto=format&fit=crop');
+            background-size: cover; background-position: center;
+            display: flex; align-items: center; justify-content: center; text-align: center;
         }
 
-        /* نصوص متجاوبة وفخمة */
-        .content h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: clamp(40px, 12vw, 90px);
-            letter-spacing: clamp(5px, 2vw, 15px);
-            margin-bottom: 10px;
-            text-transform: uppercase;
-            text-shadow: 0 10px 30px rgba(0,0,0,0.5);
-        }
+        .content h1 { font-family: 'Playfair Display', serif; font-size: clamp(50px, 15vw, 120px); letter-spacing: 15px; text-transform: uppercase; }
+        .content p { font-size: 12px; letter-spacing: 6px; opacity: 0.6; text-transform: uppercase; margin-bottom: 30px; }
 
-        .content p {
-            font-size: clamp(10px, 2vw, 16px);
-            letter-spacing: 5px;
-            margin-bottom: 40px;
-            opacity: 0.7;
-            text-transform: uppercase;
+        /* Services Section */
+        .services { padding: 100px 10%; background: #0a0a0a; text-align: center; }
+        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; margin-top: 50px; }
+        
+        .service-card {
+            padding: 40px; border: 1px solid rgba(255,255,255,0.05); transition: 0.4s;
+            background: rgba(255,255,255,0.02);
         }
+        .service-card:hover { border-color: white; transform: translateY(-10px); }
+        .service-card i { font-size: 30px; margin-bottom: 20px; color: rgba(255,255,255,0.8); }
+        .service-card h3 { font-family: 'Playfair Display', serif; letter-spacing: 2px; margin-bottom: 15px; }
+        .service-card p { font-size: 13px; opacity: 0.5; line-height: 1.6; }
 
-        /* الزر المحدث ليربط بالمعرض مباشرة */
         .btn-enter {
-            padding: 18px 50px;
-            border: 1px solid rgba(255,255,255,0.3);
-            background: rgba(255,255,255,0.05);
-            color: white;
-            text-decoration: none;
-            font-weight: bold;
-            transition: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            font-size: 13px;
-            backdrop-filter: blur(5px);
-            display: inline-block;
+            padding: 15px 40px; border: 1px solid white; color: white; text-decoration: none;
+            font-size: 12px; letter-spacing: 3px; text-transform: uppercase; transition: 0.4s;
         }
+        .btn-enter:hover { background: white; color: black; }
 
-        .btn-enter:hover {
-            background: white;
-            color: black;
-            letter-spacing: 6px;
-            border-color: white;
-            transform: translateY(-5px);
-        }
-
-        /* ناف بار علوي */
-        nav {
-            position: absolute;
-            top: 0;
-            width: 100%;
-            padding: 40px 5%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            z-index: 10;
-        }
-
-        .logo-wrapper {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .zinex-logo-svg {
-            width: 35px;
-            height: auto;
-            fill: white;
-        }
-
-        .logo-text { 
-            font-family: 'Playfair Display', serif; 
-            font-weight: 900; 
-            font-size: 22px; 
-            letter-spacing: 3px;
-        }
-
-        .designer {
-            font-size: 9px;
-            letter-spacing: 4px;
-            opacity: 0.6;
-            text-transform: uppercase;
-        }
-
-        /* تأثيرات حركية */
-        @keyframes zoomIn {
-            from { transform: scale(1); }
-            to { transform: scale(1.1); }
-        }
-
-        @keyframes fadeInContent {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .content {
-            animation: fadeInContent 2s ease-out;
-        }
-
-        ::-webkit-scrollbar { display: none; }
+        nav { position: absolute; top: 0; width: 100%; padding: 30px 5%; display: flex; justify-content: space-between; align-items: center; z-index: 10; }
+        .logo-text { font-family: 'Playfair Display', serif; font-size: 24px; letter-spacing: 4px; }
     </style>
 </head>
 <body>
 
     <nav>
-        <div class="logo-wrapper">
-            <svg class="zinex-logo-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                <path d="M20 20 H80 L20 80 H80" stroke-width="8" stroke="white" fill="none"/>
-                <circle cx="50" cy="50" r="10" stroke-width="4" stroke="white" fill="none"/>
-                <line x1="50" y1="40" x2="50" y2="25" stroke-width="3" stroke="white"/>
-                <line x1="60" y1="50" x2="75" y2="50" stroke-width="3" stroke="white"/>
-                <line x1="50" y1="60" x2="50" y2="75" stroke-width="3" stroke="white"/>
-                <line x1="40" y1="50" x2="25" y2="50" stroke-width="3" stroke="white"/>
-            </svg>
-            <div class="logo-text">ZINEX</div>
-        </div>
-        <div class="designer">BY AMINE OV</div>
+        <div class="logo-text">ZINEX</div>
+        <div style="font-size: 10px; letter-spacing: 3px; opacity: 0.5;">AMINE OV</div>
     </nav>
 
     <div class="hero">
         <div class="content">
-            <p>Visual Storyteller</p>
+            <p>Visual Arts & Code</p>
             <h1>ZINEX</h1>
-            <p>Cinematic & Urban Aesthetics</p>
-            <a href="gallery.html" class="btn-enter">View Portfolio</a>
+            <a href="#services" class="btn-enter">Our Services</a>
         </div>
     </div>
+
+    <section id="services" class="services">
+        <p style="letter-spacing: 5px; font-size: 10px; opacity: 0.4; margin-bottom: 10px;">EXPERTISE</p>
+        <h2 style="font-family: 'Playfair Display', serif; font-size: 40px; letter-spacing: 3px;">What I Do</h2>
+        
+        <div class="services-grid">
+            <div class="service-card">
+                <i class="fas fa-camera-retro"></i>
+                <h3>Photography</h3>
+                <p>Cinematic portraits and urban editorial shoots with high-end post-processing.</p>
+            </div>
+            <div class="service-card">
+                <i class="fas fa-code"></i>
+                <h3>Web Design</h3>
+                <p>Building modern, fast, and responsive websites with a focus on visual aesthetics.</p>
+            </div>
+            <div class="service-card">
+                <i class="fas fa-chart-line"></i>
+                <h3>Digital Solutions</h3>
+                <p>Technical analysis layouts and trading site architectures for modern traders.</p>
+            </div>
+        </div>
+        
+        <div style="margin-top: 60px;">
+            <a href="gallery.html" class="btn-enter">Open Archive</a>
+        </div>
+    </section>
 
 </body>
 </html>
