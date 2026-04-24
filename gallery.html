@@ -9,7 +9,7 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
         
         body {
-            background-color: #0f172a;
+            background-color: #050505; /* أسود أعمق للفخامة */
             color: white;
             font-family: 'Montserrat', sans-serif;
             padding: 50px 5%;
@@ -18,38 +18,42 @@
         header {
             text-align: center;
             margin-bottom: 60px;
+            animation: fadeInDown 1s ease;
         }
 
         header h1 {
             font-family: 'Playfair Display', serif;
-            font-size: 50px;
+            font-size: clamp(30px, 8vw, 50px);
             letter-spacing: 5px;
             text-transform: uppercase;
+            margin-bottom: 10px;
         }
 
         header p {
-            opacity: 0.6;
-            letter-spacing: 2px;
-            font-size: 14px;
+            opacity: 0.5;
+            letter-spacing: 3px;
+            font-size: 12px;
+            text-transform: uppercase;
         }
 
-        /* نظام الشبكة الفاخرة */
+        /* نظام الشبكة الفاخرة المحدث */
         .gallery-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            grid-auto-rows: 400px;
-            grid-gap: 20px;
-            grid-auto-flow: dense; /* يجعل الصور تملأ الفراغات تلقائياً */
+            grid-auto-rows: 450px;
+            grid-gap: 25px;
+            grid-auto-flow: dense;
         }
 
         .gallery-item {
             position: relative;
             overflow: hidden;
-            border-radius: 10px;
+            border-radius: 4px; /* زوايا حادة قليلاً تعطي طابعاً رسمياً أكثر */
             cursor: pointer;
+            background-color: #111;
         }
 
-        /* جعل بعض الصور تأخذ مساحة أكبر (عرضياً أو طولياً) */
+        /* توزيع الأحجام للصور */
         .gallery-item.wide { grid-column: span 2; }
         .gallery-item.tall { grid-row: span 2; }
 
@@ -57,67 +61,107 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+            transition: transform 0.8s cubic-bezier(0.2, 1, 0.3, 1);
+            filter: grayscale(20%); /* تقليل الألوان قليلاً لزيادة الفخامة */
         }
 
         .gallery-item:hover img {
-            transform: scale(1.1);
+            transform: scale(1.08);
+            filter: grayscale(0%);
         }
 
-        /* تأثير الظل عند التمرير */
-        .gallery-item::after {
-            content: '';
+        /* تأثير الظل والنص عند التمرير */
+        .overlay {
             position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.4);
+            bottom: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            display: flex;
+            align-items: flex-end;
+            padding: 30px;
             opacity: 0;
-            transition: 0.3s;
+            transition: 0.4s;
         }
 
-        .gallery-item:hover::after { opacity: 1; }
+        .gallery-item:hover .overlay { opacity: 1; }
+
+        .overlay span {
+            font-size: 12px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            border-left: 2px solid #3140A8;
+            padding-left: 10px;
+        }
+
+        .back-nav {
+            margin-top: 50px;
+            text-align: center;
+        }
 
         .back-btn {
-            display: inline-block;
-            margin-top: 40px;
-            color: white;
+            color: rgba(255,255,255,0.5);
             text-decoration: none;
-            border-bottom: 1px solid white;
-            padding-bottom: 5px;
-            font-size: 12px;
-            opacity: 0.7;
+            font-size: 11px;
+            letter-spacing: 2px;
+            transition: 0.3s;
+            text-transform: uppercase;
+        }
+
+        .back-btn:hover { color: white; }
+
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* استعلامات الوسائط للهاتف */
+        @media (max-width: 768px) {
+            .gallery-item.wide { grid-column: span 1; }
+            .gallery-grid { grid-auto-rows: 350px; }
         }
     </style>
 </head>
 <body>
 
     <header>
-        <p>AMINE OV PRESENTS</p>
-        <h1>ZINEX GALLERY</h1>
+        <p>Amine OV Portfolio</p>
+        <h1>ZINEX ARCHIVE</h1>
     </header>
 
     <div class="gallery-grid">
+        <div class="gallery-item wide">
+            <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?q=80&w=2070&auto=format&fit=crop" alt="Classic Porsche">
+            <div class="overlay"><span>Night Drive // Cinematic</span></div>
+        </div>
+
         <div class="gallery-item tall">
-            <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?q=80&w=1974&auto=format&fit=crop" alt="Cinema 1">
+            <img src="https://images.unsplash.com/photo-1614612160205-7354679244f7?q=80&w=1974&auto=format&fit=crop" alt="Old Money Style">
+            <div class="overlay"><span>Editorial // Elegance</span></div>
+        </div>
+
+        <div class="gallery-item">
+            <img src="https://images.unsplash.com/photo-1478720568477-152d9b164e26?q=80&w=2070&auto=format&fit=crop" alt="City Night">
+            <div class="overlay"><span>Urban Lights // 35mm</span></div>
+        </div>
+
+        <div class="gallery-item">
+            <img src="https://images.unsplash.com/photo-1583337130417-3346a1be7dee?q=80&w=1964&auto=format&fit=crop" alt="Details">
+            <div class="overlay"><span>Luxury Details // Macro</span></div>
         </div>
 
         <div class="gallery-item wide">
-            <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?q=80&w=2071&auto=format&fit=crop" alt="Cinema 2">
-        </div>
-
-        <div class="gallery-item">
-            <img src="https://images.unsplash.com/photo-1478720568477-152d9b164e26?q=80&w=2070&auto=format&fit=crop" alt="Cinema 3">
+            <img src="https://images.unsplash.com/photo-1493238792040-d710475a6d38?q=80&w=2070&auto=format&fit=crop" alt="Cinematic Car">
+            <div class="overlay"><span>Midnight Session // Zinex</span></div>
         </div>
 
         <div class="gallery-item tall">
-            <img src="https://images.unsplash.com/photo-1492691523567-61723c275df1?q=80&w=2070&auto=format&fit=crop" alt="Cinema 4">
-        </div>
-
-        <div class="gallery-item">
-            <img src="https://images.unsplash.com/photo-1516280440614-37939bbacd81?q=80&w=2070&auto=format&fit=crop" alt="Cinema 5">
+            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1974&auto=format&fit=crop" alt="Portrait">
+            <div class="overlay"><span>Modern Aesthetic // Amine OV</span></div>
         </div>
     </div>
 
-    <a href="index.html" class="back-btn">RETURN TO HOME</a>
+    <div class="back-nav">
+        <a href="index.html" class="back-btn">← Back to Home</a>
+    </div>
 
 </body>
 </html>
