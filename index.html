@@ -10,7 +10,7 @@
     <meta property="og:url" content="https://allghalbanajzayrytamer-art.github.io/Zinex/">
     <meta property="og:type" content="website">
 
-    <link rel="icon" type="image/png" href="logo.png">
+    <link rel="icon" type="image/png" href="logo.png.jpg">
 
     <title>ZINEX | Amine OV Portfolio</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;700&family=Playfair+Display:wght@900&display=swap" rel="stylesheet">
@@ -26,8 +26,9 @@
             display: flex; justify-content: space-between; align-items: center; z-index: 10; 
         }
         .logo-wrapper { display: flex; align-items: center; gap: 15px; }
-        .logo-img { height: 45px; width: auto; object-fit: contain; }
-        .logo-text { font-family: 'Playfair Display', serif; font-size: 22px; letter-spacing: 3px; }
+        /* تحسين مظهر اللوغو */
+        .logo-img { height: 50px; width: auto; object-fit: contain; filter: drop-shadow(0 0 5px rgba(212, 175, 55, 0.3)); }
+        .logo-text { font-family: 'Playfair Display', serif; font-size: 22px; letter-spacing: 3px; color: #d4af37; }
 
         /* Hero Section */
         .hero {
@@ -43,9 +44,10 @@
         /* Services Section */
         .services { padding: 100px 10%; background: #080808; text-align: center; }
         .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; margin-top: 60px; }
-        .service-card { padding: 50px 30px; border: 1px solid rgba(255,255,255,0.05); background: rgba(255,255,255,0.02); transition: 0.5s; }
-        .service-card:hover { border-color: #d4af37; transform: translateY(-10px); }
-        .service-card i { font-size: 35px; margin-bottom: 25px; color: #d4af37; }
+        .service-card { padding: 50px 30px; border: 1px solid rgba(255,255,255,0.05); background: rgba(255,255,255,0.02); transition: 0.5s; cursor: default; }
+        .service-card:hover { border-color: #d4af37; transform: translateY(-10px); background: rgba(212, 175, 55, 0.05); }
+        .service-card i { font-size: 35px; margin-bottom: 25px; color: #d4af37; transition: 0.3s; }
+        .service-card:hover i { transform: scale(1.2); }
         .service-card h3 { font-family: 'Playfair Display', serif; font-size: 20px; margin-bottom: 15px; letter-spacing: 2px; }
         .service-card p { font-size: 13px; opacity: 0.5; line-height: 1.7; }
 
@@ -54,7 +56,7 @@
             font-size: 11px; letter-spacing: 3px; text-transform: uppercase; transition: 0.4s;
             display: inline-block;
         }
-        .btn-action:hover { background: white; color: black; }
+        .btn-action:hover { background: white; color: black; font-weight: bold; }
 
         @media (max-width: 768px) { .logo-text { display: none; } }
     </style>
@@ -63,7 +65,7 @@
 
     <nav>
         <div class="logo-wrapper">
-            <img src="logo.png" alt="ZINEX Logo" class="logo-img">
+            <img src="logo.png.jpg" alt="ZINEX Logo" class="logo-img">
             <div class="logo-text">ZINEX</div>
         </div>
         <div style="font-size: 9px; letter-spacing: 3px; opacity: 0.4;">BY AMINE OV</div>
