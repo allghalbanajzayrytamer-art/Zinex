@@ -3,57 +3,64 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ZINEX | Gallery</title>
+    <title>ZINEX | Gallery Archive</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;600&family=Playfair+Display:wght@900&display=swap" rel="stylesheet">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         
         body {
-            background-color: #050505; /* أسود أعمق للفخامة */
+            background-color: #050505;
             color: white;
             font-family: 'Montserrat', sans-serif;
-            padding: 50px 5%;
+            padding: 80px 5% 50px;
+            overflow-x: hidden;
         }
 
         header {
             text-align: center;
-            margin-bottom: 60px;
-            animation: fadeInDown 1s ease;
+            margin-bottom: 80px;
         }
 
         header h1 {
             font-family: 'Playfair Display', serif;
-            font-size: clamp(30px, 8vw, 50px);
-            letter-spacing: 5px;
+            font-size: clamp(35px, 8vw, 60px);
+            letter-spacing: 8px;
             text-transform: uppercase;
-            margin-bottom: 10px;
         }
 
         header p {
             opacity: 0.5;
-            letter-spacing: 3px;
-            font-size: 12px;
+            letter-spacing: 4px;
+            font-size: 10px;
             text-transform: uppercase;
+            margin-top: 10px;
         }
 
-        /* نظام الشبكة الفاخرة المحدث */
+        /* نظام الشبكة */
         .gallery-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            grid-auto-rows: 450px;
-            grid-gap: 25px;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            grid-auto-rows: 500px;
+            grid-gap: 30px;
             grid-auto-flow: dense;
         }
 
+        /* الحركات الاحترافية (Reveal Animation) */
         .gallery-item {
             position: relative;
             overflow: hidden;
-            border-radius: 4px; /* زوايا حادة قليلاً تعطي طابعاً رسمياً أكثر */
-            cursor: pointer;
-            background-color: #111;
+            border-radius: 2px;
+            opacity: 0; /* مخفية في البداية */
+            transform: translateY(50px); /* نازلة للأسفل قليلاً */
+            transition: all 0.8s cubic-bezier(0.2, 1, 0.3, 1);
         }
 
-        /* توزيع الأحجام للصور */
+        /* الكلاس الذي يضيفه الجافاسكريبت عند التمرير */
+        .gallery-item.reveal {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
         .gallery-item.wide { grid-column: span 2; }
         .gallery-item.tall { grid-row: span 2; }
 
@@ -61,107 +68,119 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.8s cubic-bezier(0.2, 1, 0.3, 1);
-            filter: grayscale(20%); /* تقليل الألوان قليلاً لزيادة الفخامة */
+            transition: transform 1.2s cubic-bezier(0.2, 1, 0.3, 1);
+            filter: brightness(0.8);
         }
 
         .gallery-item:hover img {
-            transform: scale(1.08);
-            filter: grayscale(0%);
+            transform: scale(1.1);
+            filter: brightness(1);
         }
 
-        /* تأثير الظل والنص عند التمرير */
         .overlay {
             position: absolute;
             bottom: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            background: linear-gradient(to top, rgba(0,0,0,0.9), transparent 50%);
             display: flex;
             align-items: flex-end;
-            padding: 30px;
+            padding: 40px;
             opacity: 0;
-            transition: 0.4s;
+            transition: 0.5s;
         }
 
         .gallery-item:hover .overlay { opacity: 1; }
 
         .overlay span {
-            font-size: 12px;
-            letter-spacing: 2px;
+            font-size: 11px;
+            letter-spacing: 3px;
             text-transform: uppercase;
-            border-left: 2px solid #3140A8;
-            padding-left: 10px;
+            border-left: 1px solid #fff;
+            padding-left: 15px;
         }
 
         .back-nav {
-            margin-top: 50px;
+            margin-top: 100px;
             text-align: center;
         }
 
         .back-btn {
-            color: rgba(255,255,255,0.5);
+            color: rgba(255,255,255,0.3);
             text-decoration: none;
-            font-size: 11px;
-            letter-spacing: 2px;
-            transition: 0.3s;
+            font-size: 10px;
+            letter-spacing: 4px;
             text-transform: uppercase;
+            transition: 0.4s;
         }
 
-        .back-btn:hover { color: white; }
+        .back-btn:hover { color: white; letter-spacing: 6px; }
 
-        @keyframes fadeInDown {
-            from { opacity: 0; transform: translateY(-20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* استعلامات الوسائط للهاتف */
         @media (max-width: 768px) {
             .gallery-item.wide { grid-column: span 1; }
-            .gallery-grid { grid-auto-rows: 350px; }
+            .gallery-grid { grid-auto-rows: 400px; }
         }
     </style>
 </head>
 <body>
 
     <header>
-        <p>Amine OV Portfolio</p>
+        <p>Curated Works</p>
         <h1>ZINEX ARCHIVE</h1>
+        <p>By Amine OV</p>
     </header>
 
     <div class="gallery-grid">
         <div class="gallery-item wide">
-            <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?q=80&w=2070&auto=format&fit=crop" alt="Classic Porsche">
-            <div class="overlay"><span>Night Drive // Cinematic</span></div>
+            <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?q=80&w=2070" alt="Classic">
+            <div class="overlay"><span>Automotive Cinema</span></div>
         </div>
 
         <div class="gallery-item tall">
-            <img src="https://images.unsplash.com/photo-1614612160205-7354679244f7?q=80&w=1974&auto=format&fit=crop" alt="Old Money Style">
-            <div class="overlay"><span>Editorial // Elegance</span></div>
+            <img src="https://images.unsplash.com/photo-1614612160205-7354679244f7?q=80&w=1974" alt="Old Money">
+            <div class="overlay"><span>Editorial Portrait</span></div>
         </div>
 
         <div class="gallery-item">
-            <img src="https://images.unsplash.com/photo-1478720568477-152d9b164e26?q=80&w=2070&auto=format&fit=crop" alt="City Night">
-            <div class="overlay"><span>Urban Lights // 35mm</span></div>
+            <img src="https://images.unsplash.com/photo-1478720568477-152d9b164e26?q=80&w=2070" alt="City">
+            <div class="overlay"><span>Urban Nightscape</span></div>
         </div>
 
         <div class="gallery-item">
-            <img src="https://images.unsplash.com/photo-1583337130417-3346a1be7dee?q=80&w=1964&auto=format&fit=crop" alt="Details">
-            <div class="overlay"><span>Luxury Details // Macro</span></div>
+            <img src="https://images.unsplash.com/photo-1583337130417-3346a1be7dee?q=80&w=1964" alt="Details">
+            <div class="overlay"><span>Luxury Textures</span></div>
         </div>
 
         <div class="gallery-item wide">
-            <img src="https://images.unsplash.com/photo-1493238792040-d710475a6d38?q=80&w=2070&auto=format&fit=crop" alt="Cinematic Car">
-            <div class="overlay"><span>Midnight Session // Zinex</span></div>
+            <img src="https://images.unsplash.com/photo-1493238792040-d710475a6d38?q=80&w=2070" alt="Motion">
+            <div class="overlay"><span>Midnight Drive</span></div>
         </div>
 
         <div class="gallery-item tall">
-            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1974&auto=format&fit=crop" alt="Portrait">
-            <div class="overlay"><span>Modern Aesthetic // Amine OV</span></div>
+            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1974" alt="Style">
+            <div class="overlay"><span>Modern Aesthetic</span></div>
         </div>
     </div>
 
     <div class="back-nav">
-        <a href="index.html" class="back-btn">← Back to Home</a>
+        <a href="index.html" class="back-btn">← Home</a>
     </div>
 
+    <script>
+        // كود الجافاسكريبت المسؤول عن حركة الظهور عند التمرير
+        const observerOptions = {
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('reveal');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.gallery-item').forEach(item => {
+            observer.observe(item);
+        });
+    </script>
 </body>
 </html>
