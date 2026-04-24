@@ -87,7 +87,7 @@
         }
 
         button:hover { transform: scale(1.05); }
-        button.hidden { background-color: transparent; border-color: #fff; }
+        button.hidden { background-color: transparent; border: 2px solid #fff; }
 
         /* التحكم في التبديل */
         .sign-in { left: 0; width: 50%; z-index: 2; }
@@ -164,24 +164,24 @@
 
     <div class="container" id="container">
         <div class="form-container sign-up">
-            <form>
+            <form id="signUpForm">
                 <div class="brand-name">ZINEX</div>
                 <h1>Create Account</h1>
-                <input type="text" placeholder="Name">
-                <input type="email" placeholder="Email">
-                <input type="password" placeholder="Password">
-                <button type="button">Sign Up</button>
+                <input type="text" placeholder="Name" required>
+                <input type="email" placeholder="Email" required>
+                <input type="password" placeholder="Password" required>
+                <button type="submit">Sign Up</button>
             </form>
         </div>
 
         <div class="form-container sign-in">
-            <form>
+            <form id="signInForm">
                 <div class="brand-name">ZINEX</div>
                 <h1>Sign In</h1>
-                <input type="email" placeholder="Email">
-                <input type="password" placeholder="Password">
+                <input type="email" placeholder="Email" required>
+                <input type="password" placeholder="Password" required>
                 <a href="#" style="font-size: 12px; color: #666; margin-top: 10px;">Forgot Password?</a>
-                <button type="button">Sign In</button>
+                <button type="submit">Sign In</button>
             </form>
         </div>
 
@@ -190,13 +190,13 @@
                 <div class="toggle-panel toggle-left">
                     <h1 style="color: white;">Welcome Back!</h1>
                     <p>To keep connected with ZINEX please login</p>
-                    <button class="hidden" id="login">Sign In</button>
+                    <button class="hidden" id="loginBtn">Sign In</button>
                     <div class="designer-tag">BY AMINE OV</div>
                 </div>
                 <div class="toggle-panel toggle-right">
                     <h1 style="color: white;">Hello, Friend!</h1>
                     <p>Enter your details and start your journey with ZINEX</p>
-                    <button class="hidden" id="register">Sign Up</button>
+                    <button class="hidden" id="registerBtn">Sign Up</button>
                     <div class="designer-tag">BY AMINE OV</div>
                 </div>
             </div>
@@ -205,15 +205,29 @@
 
     <script>
         const container = document.getElementById('container');
-        const registerBtn = document.getElementById('register');
-        const loginBtn = document.getElementById('login');
+        const registerBtn = document.getElementById('registerBtn');
+        const loginBtn = document.getElementById('loginBtn');
+        const signInForm = document.getElementById('signInForm');
+        const signUpForm = document.getElementById('signUpForm');
 
+        // التبديل بين اللوحات بالأنيميشن
         registerBtn.addEventListener('click', () => {
             container.classList.add("active");
         });
 
         loginBtn.addEventListener('click', () => {
             container.classList.remove("active");
+        });
+
+        // التوجيه إلى صفحة المعرض عند إرسال النموذج
+        signInForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            window.location.href = 'gallery.html';
+        });
+
+        signUpForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            window.location.href = 'gallery.html';
         });
     </script>
 </body>
