@@ -19,7 +19,7 @@
         .hero {
             height: 100vh;
             background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.8)), 
-                        url('https://images.unsplash.com/photo-1536440136628-849c177e76a1?q=80&w=2025&auto=format&fit=crop');
+                        url('https://images.unsplash.com/photo-1536440136628-849c177e76a1?q=80&w=2025&auto=format&fit=crop'); /* رابط مؤقت، استبدله بصورتك */
             background-size: cover;
             background-position: center;
             display: flex;
@@ -77,11 +77,25 @@
             z-index: 10;
         }
 
-        .logo { 
+        /* تنسيق الشعار الـ SVG الجديد */
+        .logo-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 10px; /* مسافة بين أيقونة الـ Z والاسم */
+        }
+
+        .zinex-logo-svg {
+            width: 40px; /* حجم الشعار */
+            height: auto;
+            fill: white; /* لون الشعار */
+        }
+
+        .logo-text { 
             font-family: 'Playfair Display', serif; 
             font-weight: 900; 
             font-size: 24px; 
             letter-spacing: 2px;
+            color: white;
         }
 
         .designer {
@@ -89,6 +103,7 @@
             letter-spacing: 3px;
             opacity: 0.7;
             text-transform: uppercase;
+            color: white;
         }
 
         /* أنيميشن الدخول */
@@ -104,7 +119,21 @@
 <body>
 
     <nav>
-        <div class="logo">ZINEX</div>
+        <div class="logo-wrapper">
+            <svg class="zinex-logo-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                <path d="M20 20 H80 L20 80 H80" stroke-width="8" stroke="currentColor" fill="none"/>
+                <circle cx="50" cy="50" r="10" stroke-width="4" stroke="currentColor" fill="none"/>
+                <line x1="50" y1="40" x2="50" y2="25" stroke-width="3" stroke="currentColor"/>
+                <line x1="60" y1="50" x2="75" y2="50" stroke-width="3" stroke="currentColor"/>
+                <line x1="50" y1="60" x2="50" y2="75" stroke-width="3" stroke="currentColor"/>
+                <line x1="40" y1="50" x2="25" y2="50" stroke-width="3" stroke="currentColor"/>
+                <line x1="57" y1="43" x2="68" y2="32" stroke-width="3" stroke="currentColor"/>
+                <line x1="57" y1="57" x2="68" y2="68" stroke-width="3" stroke="currentColor"/>
+                <line x1="43" y1="57" x2="32" y2="68" stroke-width="3" stroke="currentColor"/>
+                <line x1="43" y1="43" x2="32" y2="32" stroke-width="3" stroke="currentColor"/>
+            </svg>
+            <div class="logo-text">ZINEX</div>
+        </div>
         <div class="designer">BY AMINE OV</div>
     </nav>
 
