@@ -15,11 +15,11 @@
             background-color: #000;
         }
 
-        /* تحسين الخلفية السينمائية */
+        /* الخلفية السينمائية المحدثة */
         .hero {
             height: 100vh;
             background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.8)), 
-                        url('https://images.unsplash.com/photo-1536440136628-849c177e76a1?q=80&w=2025&auto=format&fit=crop'); /* رابط مؤقت، استبدله بصورتك */
+                        url('https://images.unsplash.com/photo-1536440136628-849c177e76a1?q=80&w=2025&auto=format&fit=crop');
             background-size: cover;
             background-position: center;
             display: flex;
@@ -27,92 +27,104 @@
             justify-content: center;
             text-align: center;
             color: white;
-            animation: fadeIn 2s ease-in; /* أنيميشن عند دخول الصفحة */
+            animation: zoomIn 5s infinite alternate ease-in-out; /* تأثير حركة بطيئة للخلفية */
         }
 
-        /* جعل النصوص متجاوبة مع الشاشات الصغيرة */
+        /* نصوص متجاوبة وفخمة */
         .content h1 {
             font-family: 'Playfair Display', serif;
-            font-size: clamp(40px, 10vw, 80px); /* يتغير الحجم حسب الشاشة */
+            font-size: clamp(40px, 12vw, 90px);
             letter-spacing: clamp(5px, 2vw, 15px);
             margin-bottom: 10px;
             text-transform: uppercase;
+            text-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
 
         .content p {
-            font-size: clamp(12px, 2vw, 18px);
-            letter-spacing: 3px;
-            margin-bottom: 30px;
-            opacity: 0.8;
+            font-size: clamp(10px, 2vw, 16px);
+            letter-spacing: 5px;
+            margin-bottom: 40px;
+            opacity: 0.7;
+            text-transform: uppercase;
         }
 
+        /* الزر المحدث ليربط بالمعرض مباشرة */
         .btn-enter {
-            padding: 15px 40px;
-            border: 1px solid white;
-            background: transparent;
+            padding: 18px 50px;
+            border: 1px solid rgba(255,255,255,0.3);
+            background: rgba(255,255,255,0.05);
             color: white;
             text-decoration: none;
             font-weight: bold;
             transition: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-            letter-spacing: 2px;
+            letter-spacing: 3px;
             text-transform: uppercase;
-            font-size: 14px;
+            font-size: 13px;
+            backdrop-filter: blur(5px);
+            display: inline-block;
         }
 
         .btn-enter:hover {
             background: white;
             color: black;
-            letter-spacing: 4px; /* تأثير حركي عند التمرير */
+            letter-spacing: 6px;
+            border-color: white;
+            transform: translateY(-5px);
         }
 
-        /* ناف بار أنيق */
+        /* ناف بار علوي */
         nav {
             position: absolute;
             top: 0;
             width: 100%;
-            padding: 30px 5%;
+            padding: 40px 5%;
             display: flex;
             justify-content: space-between;
             align-items: center;
             z-index: 10;
         }
 
-        /* تنسيق الشعار الـ SVG الجديد */
         .logo-wrapper {
             display: flex;
             align-items: center;
-            gap: 10px; /* مسافة بين أيقونة الـ Z والاسم */
+            gap: 12px;
         }
 
         .zinex-logo-svg {
-            width: 40px; /* حجم الشعار */
+            width: 35px;
             height: auto;
-            fill: white; /* لون الشعار */
+            fill: white;
         }
 
         .logo-text { 
             font-family: 'Playfair Display', serif; 
             font-weight: 900; 
-            font-size: 24px; 
-            letter-spacing: 2px;
-            color: white;
+            font-size: 22px; 
+            letter-spacing: 3px;
         }
 
         .designer {
-            font-size: 10px;
-            letter-spacing: 3px;
-            opacity: 0.7;
+            font-size: 9px;
+            letter-spacing: 4px;
+            opacity: 0.6;
             text-transform: uppercase;
-            color: white;
         }
 
-        /* أنيميشن الدخول */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: scale(1.1); }
-            to { opacity: 1; transform: scale(1); }
+        /* تأثيرات حركية */
+        @keyframes zoomIn {
+            from { transform: scale(1); }
+            to { transform: scale(1.1); }
         }
 
-        /* إخفاء السكرول بار في الموبايل */
+        @keyframes fadeInContent {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .content {
+            animation: fadeInContent 2s ease-out;
+        }
+
         ::-webkit-scrollbar { display: none; }
     </style>
 </head>
@@ -121,16 +133,12 @@
     <nav>
         <div class="logo-wrapper">
             <svg class="zinex-logo-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                <path d="M20 20 H80 L20 80 H80" stroke-width="8" stroke="currentColor" fill="none"/>
-                <circle cx="50" cy="50" r="10" stroke-width="4" stroke="currentColor" fill="none"/>
-                <line x1="50" y1="40" x2="50" y2="25" stroke-width="3" stroke="currentColor"/>
-                <line x1="60" y1="50" x2="75" y2="50" stroke-width="3" stroke="currentColor"/>
-                <line x1="50" y1="60" x2="50" y2="75" stroke-width="3" stroke="currentColor"/>
-                <line x1="40" y1="50" x2="25" y2="50" stroke-width="3" stroke="currentColor"/>
-                <line x1="57" y1="43" x2="68" y2="32" stroke-width="3" stroke="currentColor"/>
-                <line x1="57" y1="57" x2="68" y2="68" stroke-width="3" stroke="currentColor"/>
-                <line x1="43" y1="57" x2="32" y2="68" stroke-width="3" stroke="currentColor"/>
-                <line x1="43" y1="43" x2="32" y2="32" stroke-width="3" stroke="currentColor"/>
+                <path d="M20 20 H80 L20 80 H80" stroke-width="8" stroke="white" fill="none"/>
+                <circle cx="50" cy="50" r="10" stroke-width="4" stroke="white" fill="none"/>
+                <line x1="50" y1="40" x2="50" y2="25" stroke-width="3" stroke="white"/>
+                <line x1="60" y1="50" x2="75" y2="50" stroke-width="3" stroke="white"/>
+                <line x1="50" y1="60" x2="50" y2="75" stroke-width="3" stroke="white"/>
+                <line x1="40" y1="50" x2="25" y2="50" stroke-width="3" stroke="white"/>
             </svg>
             <div class="logo-text">ZINEX</div>
         </div>
@@ -139,10 +147,10 @@
 
     <div class="hero">
         <div class="content">
-            <p>DISCOVER THE ART OF</p>
+            <p>Visual Storyteller</p>
             <h1>ZINEX</h1>
-            <p style="margin-bottom: 40px;">CINEMATIC PHOTOGRAPHY & WEB DESIGN</p>
-            <a href="login.html" class="btn-enter">ENTER EXPERIENCE</a>
+            <p>Cinematic & Urban Aesthetics</p>
+            <a href="gallery.html" class="btn-enter">View Portfolio</a>
         </div>
     </div>
 
